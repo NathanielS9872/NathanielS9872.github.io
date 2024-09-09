@@ -1,0 +1,10 @@
+section{
+    width:500px;
+}
+.floatLeft{
+    float:left;
+    width:500px;
+}
+img{
+    margin:0,auto;
+}
