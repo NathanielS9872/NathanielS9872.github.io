@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Image Carousel</title>
     <link rel="stylesheet" href="/styles.css">
     <script src="/site.js" defer></script> 
 </head>
@@ -19,19 +19,18 @@
             </ul> 
         </nav>
         <div class="floatRight">
-            <img src="/img/NS.jpg" height=auto width=auto alt="Picture of NS">
-            <p>
-                Hello, I am Nathaniel Springer and I am enrolled as a Software Developer and Web Development and Design Specialist. Some of my interests include video games and D&D.
-            </p>
+
         </div>
-        <div class="floatLeft">
-            Favorite Books:
-            <ul>
-                <li>The Lightning Thief</li>
-                <li>The Lost Hero</li>
-                <li>The Hunger Games</li>
-                <li>The Maze Runner</li>
-            </ul>
+        <div>
+            <div id="carousel">
+                <img alt="Image 1">
+                <img alt="Image 2">
+                <img alt="Image 3">
+            </div>
+            <div id="buttons">
+                <button id="prev">Previous</button>
+                <button id="next">Next</button>
+            </div>
         </div>
     </main>
     <footer>
