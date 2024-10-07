@@ -1,4 +1,5 @@
-console.log("Test")
+//Homepage
+//console.log("Test")
 const div = document.querySelector('#welcome')
 const hours = new Date().getHours()
 const isMorning = hours >= 4 && hours < 12
@@ -13,7 +14,10 @@ if(isAfternoon){
 if(isEvening){
     div.textContent = "Good Evening"
 }
+
 //localStorage.setItem("It's a secret to everybody.","It's not secure to everybody.")
+
+//Image Carousel
 const urls = [
     'https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     'https://images.pexels.com/photos/933964/pexels-photo-933964.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -44,4 +48,23 @@ document.querySelector("#prev").addEventListener("click",()=>{
 document.querySelector("#next").addEventListener("click",()=>{
     currentImage++
     showImages()
+})
+
+//todo-list
+const todoinput = document.querySelector("#new-todo")
+const todoList = document.querySelector(".todo-list")
+renderTodos = () =>{
+    todoList.innerHTML = ' '
+    JSON.parse(localStorage.getItem('todo-list')).forEach(({text})=>{
+        const li = document.createElement('li')
+        li.textContent = text
+        todoList.append(li)
+    })}
+let todos = localStorage.getItem('todo-list')||[]
+if(todos == localStorage.getItem('todo-list'))renderTodos()
+document.querySelector("#toDoButton").addEventListener("click",()=>{
+    let todos = JSON.parse(localStorage.getItem('todo-list'))||[]
+    todos.push({text:todoinput.value, completed:false})
+    localStorage.setItem('todo-list',JSON.stringify(todos))
+    renderTodos()
 })

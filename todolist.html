@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>To-Do List</title>
     <link rel="stylesheet" href="/styles.css">
     <script src="/site.js" defer></script> 
 </head>
 <body>
     <main>
-        <header>
+        <header><div id="prev"><div id="next"></div></div>
             <h1><div id="welcome"></div></h1>
         </header>
         <nav class="floatLeft">
@@ -20,19 +20,13 @@
             </ul> 
         </nav>
         <div class="floatRight">
-            <img src="/img/NS.jpg" height=auto width=auto alt="Picture of NS">
-            <p>
-                Hello, I am Nathaniel Springer and I am enrolled as a Software Developer and Web Development and Design Specialist. Some of my interests include video games and D&D.
-            </p>
         </div>
         <div class="floatLeft">
-            Favorite Books:
-            <ul>
-                <li>The Lightning Thief</li>
-                <li>The Lost Hero</li>
-                <li>The Hunger Games</li>
-                <li>The Maze Runner</li>
+            <ul class="todo-list">
+                <!-- List items will go here -->
             </ul>
+            <input type="text" id="new-todo" placeholder="Add a new item">
+            <button type="button" id="toDoButton">Add To Do</button>
         </div>
     </main>
     <footer>
