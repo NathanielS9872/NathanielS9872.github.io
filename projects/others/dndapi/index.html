@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND API</title>
+    <link href="styles.css" rel="stylesheet">
+    <script src="site.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="flexbox">
+                <li><a>Home</a></li>
+                <li><a>Initiative Tracker</a></li>
+                <li><a>Monsters</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="home">
+        <h1>Homepage</h1>
+    </div>
+    <div id="inTracker">
+        <div class="flexbox">
+            <div>
+                <ol class="flexbox">
+                    <li>Test</li>
+                </ol>
+                <button id="initEnd">End Turn</button>
+                <button id="deleteAll">Delete All</button>
+            </div>
+            <div id="divId1">
+                <h2 id="initH1"></h2>
+                <form>
+                    <input type="text" placeholder="Name" class="initInput" id="initName"><br>
+                    <input type="number" placeholder="Initiative" class="initInput" id="initInitiative"><br>
+                </form>
+                <button id="initAdd">Add</button>
+            </div>      
+        </div>
+        <aside style="clear:both;text-align: center;">Please use different names for each creature(s)</aside>
+    </div>
+    <div id="monsters">
+        <p style="float:right;font-weight: bold;" id="pFilters">Filters</p>
+        <div style="clear:both;"><button style="width:20%;" id="pTop">Previous</button><button id="nTop" style="width:20%;float:right;">Next</button></div>
+        <div style="float:left;width:50%;" id="monLeft">
+            <h1 id="name"></h1>
+            <span id="sizeAlign"></span>
+            <hr>
+            <em>Armor Class</em><span id="ac"></span><br>
+            <em>Hit Points</em><span id="hp"></span><br>
+            <em>Speed</em><span id="speed"></span><br>
+            <!--<em>Roll Initative!</em><span id="rollinit"></span>-->
+            <hr>
+            <div class="gridarea">
+                <div>STR<br><span id="strBonus"></span></div>
+                <div>DEX<br><span id="dexBonus"></span></div>
+                <div>CON<br><span id="conBonus"></span></div>
+                <div>INT<br><span id="intBonus"></span></div>
+                <div>WIS<br><span id="wisBonus"></span></div>
+                <div>CHA<br><span id="chaBonus"></span></div>
+            </div>
+            <hr>
+            <div>
+            <div id="dmgVulDiv"><em>Damage Vulnerabilities</em><span id="dmgVul"></span><br></div>
+            <div id="dmgResDiv"><em>Damage Resistances</em><span id="dmgRes"></span><br></div>
+            <div id="dmgImmDiv"><em>Damage Immunities</em><span id="dmgImm"></span><br></div>
+            <div id="conImmuneDiv"><em>Condition Immunities</em><span id="conImmune"></span><br></div>
+            <div id="senDiv"><em>Senses</em><span id="senses"></span><br></div>
+            <div id="lanDiv" style="float:left;"><em>Languages</em><span id="lang"></span></div><br>
+            <em>Skills</em><div id="skills"></div>
+            <em>Challenge</em><span id="cr"> 0</span>
+            <hr>
+            <span id="special"></span>
+        </div></div>
+        <div id="monRight" style="float:right;width:45%;padding-left:5%;">
+            <div id="actions"><em>Actions<br></em></div>
+            <div id="bActions"><em>Bonus Actions<br></em></div>
+            <div id="rActions"><em>Reactions<br></em></div>
+            <span id="legDesc"><em>Legendary Actions</em></span>
+            <div id="lActions"></div>
+        </div>
+        <div id="bottom" style="clear:both;width:100%;"><hr><span id="desc"></span></div>
+        <br>
+        <button style="width:20%;" id="pBottom">Previous</button><button id="nBottom" style="width:20%;float:right;">Next</button>
+    </div>
+    <div id="initDetail"></div>
+    <div id="filters">
+        <button id="leaveFilters">Back</button><br>
+        <input type="text" id="filterName"><label for="filterName">Name</label><br>
+        <div id="inputsCR"><input type="number" name="minCR"><label for="minCR">Min CR (0.25 = 1/4, 0.5=1/2)</label><br><input type="number" name="maxCR"><label for="maxCR">Max CR</label></div>
+        <input type="checkbox" id="leg_act" name="leg_act"><label for="leg_act">Legendary Actions</label><br>
+        <input type="number" id="pageNumber" value="0"><label for="pageNumberInitial">Page number monster is found on (can be found in Inspect -> Console while searching)</label><br>
+        <input type="number" id="monsterNumber"><label for="MonsterNumberInitial">Monster Number on any page, must be more than -1 and lower than 50 (can be found in Inspect -> Console)</label>
+        <br><select id="env">
+            <option value=""></option>
+            <option value="Arctic">Arctic</option>
+            <option value="Coastal">Coastal</option>
+            <option value="Desert">Desert</option>
+            <option value="Forest">Forest</option>
+            <option value="Grassland">Grassland</option>
+            <option value="Hill">Hill</option>
+            <option value="Swamp">Swamp</option>
+            <option value="Feywild">Feywild</option>
+            <option value="Underdark">Underdark</option>
+            <option value="Ruin">Ruins</option>
+        </select> Environment<br>
+        <select id="type">
+            <option value=""></option>
+            <option value="Beast">Beast</option>
+            <option value="Fey">Fey</option>
+            <option value="Construct">Construct</option>
+            <option value="Humanoid">Humanoid</option>
+            <option value="Aberration">Aberration</option>
+            <option value="Celestial">Celestial</option>
+            <option value="Dragon">Dragon</option>
+            <option value="Elemental">Elemental</option>
+            <option value="Fiend">Fiend</option>
+            <option value="Giant">Giant</option>
+            <option value="Monstrosity">Monstrosity</option>
+            <option value="Ooze">Ooze</option>
+            <option value="Plant">Plant</option>
+            <option value="Undead">Undead</option>
+        </select>Type<br>
+        <select id="spec">
+            <option value=""></option>
+            <option value="Labyrinthine Recall">Labyrinthine Recall</option>
+            <option value="Undead Fortitude">Undead Fortitude</option>
+            <option value="Regeneration">Regeneration</option>
+            <option value="Amphibious">Amphibious</option>
+            <option value="Seige Monster">Seige Monster</option>
+            <option value="Flyby">Flyby</option>
+            <option value="Spellcasting">Spellcasting</option>
+            <option value="Keen Senses">Keen Senses</option>
+            <option value="Spider Climb">Spider Climb</option>
+            <option value="Web Walker">Web Walker</option>
+        </select> Special Ability<br>
+        <p>Filters are saved while site is loaded, but are lost when refreshed</p>
+        <p>Text/Numbers can be left blank if no filter is wanted</p>
+    </div>
+    <div style="display:none;" id="information"><p>0</p><p>https://api.open5e.com/v1/monsters/</p></div>
+</body>
+</html>
